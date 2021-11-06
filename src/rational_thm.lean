@@ -1,7 +1,4 @@
-import data.int.basic
 import data.real.basic
-import algebra.order.field
-import data.nat.lattice
 
 section
 universe u
