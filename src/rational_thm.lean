@@ -1,4 +1,5 @@
 import data.real.basic
+import tactic.linarith.frontend
 
 section
 universe u
@@ -145,16 +146,7 @@ begin
     have n1_lt_y_sub_x : (n : ℝ)⁻¹ < y - x,
       rw ← one_div,
       exact hn.right,
-    -- Would like to do: apply lt_tsub_comm.1, but then we
-    -- need to show that ℝ is an instance of add_comm_monoid
-    -- (and I don't understand why that is not automatic from
-    -- importing data.real.basic) and has_ordered_sub (and
-    -- surely that should be defined somewhere?)
-    apply (add_lt_add_iff_right (n : ℝ)⁻¹).1,
-    apply (add_lt_add_iff_right (-x)).1,
-    simp,
-    apply add_lt_of_lt_sub_right,
-    exact n1_lt_y_sub_x,
+    linarith,
   norm_cast at h_y_sub_1n,
   exact lt_of_lt_of_le x_lt_y_sub_1n h_y_sub_1n,
 end
