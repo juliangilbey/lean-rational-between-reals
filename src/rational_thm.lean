@@ -50,25 +50,10 @@ begin
   exact h,
 end
 
-lemma sub_one_lt_of_pos' { n : ℕ } (h : 0 < n) : n - 1 < n :=
+lemma sub_one_lt_of_pos { n : ℕ } (h : 0 < n) : n - 1 < n :=
 begin
   rw nat.sub_one n,
   exact nat_pred_lt_of_pos h,
-end
-
-lemma sub_one_lt_of_pos { n : ℕ } (h : 0 < n) : n - 1 < n :=
-begin
-  have hm : ∃ m : ℕ, n = m.succ,
-    use n - 1,
-    cases n,
-      exfalso,
-      apply lt_irrefl 0,
-      exact h,
-    apply nat.succ_pred_eq_of_pos h,
-  cases hm with m hm',
-  rw hm',
-  rw nat.succ_sub_one _,
-  exact nat.lt_succ_self _,
 end
 
 lemma inv_nat_lt_pos_real (x : ℝ) (xpos : 0 < x) :
